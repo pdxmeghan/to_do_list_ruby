@@ -1,7 +1,25 @@
 require './lib/task'
+require './lib/list'
 
 @list = []
 @done = []
+@list_of_lists = []
+
+def first_menu
+  loop do
+    puts "Press 'n' to create a new list."
+    puts "Press 'p' to pick a list to view."
+    first_choice = gets.chomp
+    if first_choice == 'n'
+      new_list
+    elsif first_choice == 'p'
+      view_list
+    else
+      puts "Pick a valid option, duh!"
+      first_menu
+    end
+  end
+end
 
 def main_menu
   loop do
@@ -22,6 +40,23 @@ def main_menu
     end
   end
 end
+
+def new_list
+  puts "What is the name of your list?"
+  list_name = gets.chomp
+  new_list = List.new(list_name)
+  puts "List created!"
+  @list_of_lists << new_list
+  first_menu
+end
+
+def view_list
+  puts "Here are all your lists"
+  @list_of_lists.each do |list|
+    puts list.name
+  end
+end
+
 
 def add_task
   puts "Enter a description of the new task:"
@@ -55,4 +90,4 @@ def mark_done
   "\n\n"
 end
 
-main_menu
+first_menu
