@@ -25,4 +25,14 @@ class List
     @completed << task
     @tasks.delete(task)
   end
+
+  def remove_task(task)
+    @tasks.delete(task)
+  end
+
+  def sorted_by_priority
+    sorted_array = @tasks.sort_by {|task| task.priority}
+    sorted_array
+  end
+
 end
