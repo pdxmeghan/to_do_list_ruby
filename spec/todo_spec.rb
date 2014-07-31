@@ -26,6 +26,14 @@ describe 'List' do
     test_list.add_task(test_task)
     expect(test_list.tasks).to eq [test_task]
   end
+
+  it 'will remove completed tasks and store them in array' do
+    test_list = List.new("Home stuff")
+    test_task = Task.new("sweep the kitchen")
+    test_list.delete_task(test_task)
+    expect(test_list.completed).to eq [test_task]
+    expect(test_list.tasks).to eq []
+  end
 end
 
 

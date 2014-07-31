@@ -2,6 +2,7 @@ class List
   def initialize(name)
     @name = name
     @tasks = []
+    @completed = []
   end
 
   def name
@@ -12,8 +13,16 @@ class List
     @tasks
   end
 
-  def add_task(task_name)
-    @task_name = task_name
-    @tasks << @task_name
+  def completed
+    @completed
+  end
+
+  def add_task(task)
+    @tasks << task
+  end
+
+  def delete_task(task)
+    @completed << task
+    @tasks.delete(task)
   end
 end
