@@ -1,8 +1,6 @@
 require './lib/task'
 require './lib/list'
 
-@list_of_lists = []
-
 def first_menu
   loop do
     puts "Press 'n' to create a new list."
@@ -12,7 +10,7 @@ def first_menu
     if first_choice == 'n'
       new_list
     elsif first_choice == 'p'
-      if @list_of_lists == []
+      if List.all == []
         puts "Sorry! You have no lists. Please add a new list."
         puts "\n"
         first_menu
@@ -31,22 +29,21 @@ end
 def new_list
   puts "What is the name of your list?"
   list_name = gets.chomp
-  new_list = List.new(list_name)
+  List.new(list_name).save
   puts "List created!"
-  @list_of_lists << new_list
   puts "\n\n"
   first_menu
 end
 
 def view_list
   puts "Here are all your lists"
-  @list_of_lists.each do |list|
+  List.all.each do |list|
     puts list.name
   end
   puts "\n\n"
   puts "Write the name of the list you would like to view."
   list_choice = gets.chomp
-  @list_of_lists.each do |list|
+  List.all.each do |list|
     if list.name == list_choice
       @selected_list = list
       puts "\n\n"

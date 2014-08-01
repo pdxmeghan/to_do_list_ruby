@@ -1,8 +1,22 @@
 class List
+  @@all_lists = []
+
   def initialize(name)
     @name = name
     @tasks = []
     @completed = []
+  end
+
+  def List.clear
+    @@all_lists = []
+  end
+
+  def List.all
+    @@all_lists
+  end
+
+  def save
+    @@all_lists << self
   end
 
   def name
